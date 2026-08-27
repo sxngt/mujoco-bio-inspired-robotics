@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+runs/
+logs/
+out/*.png
+out/log_*/events*
+out/tb_*/
+out/best_*/
+*.log
+.ruff_cache/
+.pytest_cache/
+.DS_Store

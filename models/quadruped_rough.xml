@@ -1,0 +1,66 @@
+<mujoco model="quadbook_rough">
+  <!-- Chapter 13: rough terrain that includes the flat-ground model as is and lays down slabs of random height (0.5~3 cm) -->
+  <include file="quadruped.xml"/>
+  <worldbody>
+    <geom name="rock0" type="box" pos="0.575 -0.316 0.0125" size="0.150 0.183 0.0125" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock1" type="box" pos="0.716 -0.025 0.0045" size="0.168 0.190 0.0045" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock2" type="box" pos="0.833 0.020 0.0079" size="0.150 0.408 0.0079" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock3" type="box" pos="0.987 -0.259 0.0106" size="0.164 0.252 0.0106" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock4" type="box" pos="1.050 0.568 0.0062" size="0.118 0.462 0.0062" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock5" type="box" pos="1.205 -0.034 0.0122" size="0.084 0.397 0.0122" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock6" type="box" pos="1.312 -0.491 0.0108" size="0.192 0.223 0.0108" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock7" type="box" pos="1.448 -0.242 0.0118" size="0.167 0.227 0.0118" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock8" type="box" pos="1.580 0.189 0.0110" size="0.178 0.300 0.0110" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock9" type="box" pos="1.696 0.454 0.0038" size="0.182 0.288 0.0038" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock10" type="box" pos="1.799 -0.424 0.0112" size="0.115 0.455 0.0112" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock11" type="box" pos="1.907 0.074 0.0075" size="0.154 0.219 0.0075" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock12" type="box" pos="2.021 0.296 0.0119" size="0.148 0.472 0.0119" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock13" type="box" pos="2.142 0.421 0.0046" size="0.196 0.368 0.0046" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock14" type="box" pos="2.286 0.565 0.0123" size="0.175 0.169 0.0123" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock15" type="box" pos="2.392 -0.498 0.0049" size="0.106 0.451 0.0049" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock16" type="box" pos="2.498 -0.244 0.0087" size="0.182 0.488 0.0087" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock17" type="box" pos="2.652 -0.344 0.0093" size="0.165 0.168 0.0093" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock18" type="box" pos="2.771 -0.158 0.0099" size="0.160 0.384 0.0099" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock19" type="box" pos="2.881 0.066 0.0050" size="0.139 0.194 0.0050" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock20" type="box" pos="2.999 0.043 0.0122" size="0.127 0.157 0.0122" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock21" type="box" pos="3.122 -0.354 0.0118" size="0.127 0.283 0.0118" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock22" type="box" pos="3.265 -0.128 0.0069" size="0.122 0.318 0.0069" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock23" type="box" pos="3.336 0.056 0.0140" size="0.148 0.410 0.0140" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock24" type="box" pos="3.507 0.411 0.0118" size="0.178 0.437 0.0118" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock25" type="box" pos="3.585 -0.022 0.0068" size="0.111 0.350 0.0068" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock26" type="box" pos="3.709 0.142 0.0098" size="0.093 0.305 0.0098" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock27" type="box" pos="3.833 0.248 0.0036" size="0.100 0.329 0.0036" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock28" type="box" pos="3.954 0.198 0.0067" size="0.104 0.476 0.0067" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock29" type="box" pos="4.065 -0.424 0.0060" size="0.121 0.229 0.0060" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock30" type="box" pos="4.202 0.524 0.0041" size="0.130 0.384 0.0041" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock31" type="box" pos="4.343 0.600 0.0043" size="0.144 0.458 0.0043" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock32" type="box" pos="4.413 0.106 0.0047" size="0.172 0.478 0.0047" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock33" type="box" pos="4.562 -0.589 0.0033" size="0.130 0.447 0.0033" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock34" type="box" pos="4.664 0.203 0.0076" size="0.112 0.396 0.0076" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock35" type="box" pos="4.788 -0.154 0.0121" size="0.139 0.424 0.0121" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock36" type="box" pos="4.921 -0.408 0.0080" size="0.185 0.348 0.0080" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock37" type="box" pos="5.068 -0.599 0.0068" size="0.172 0.390 0.0068" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock38" type="box" pos="5.164 0.196 0.0135" size="0.162 0.342 0.0135" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock39" type="box" pos="5.284 0.200 0.0065" size="0.160 0.365 0.0065" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock40" type="box" pos="5.417 -0.024 0.0028" size="0.144 0.450 0.0028" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock41" type="box" pos="5.528 0.172 0.0074" size="0.123 0.402 0.0074" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock42" type="box" pos="5.615 0.440 0.0135" size="0.195 0.197 0.0135" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock43" type="box" pos="5.737 0.473 0.0075" size="0.112 0.284 0.0075" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock44" type="box" pos="5.890 -0.406 0.0086" size="0.159 0.402 0.0086" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock45" type="box" pos="5.971 0.373 0.0079" size="0.132 0.347 0.0079" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock46" type="box" pos="6.107 0.464 0.0052" size="0.145 0.209 0.0052" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock47" type="box" pos="6.247 0.482 0.0135" size="0.096 0.369 0.0135" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock48" type="box" pos="6.384 -0.360 0.0077" size="0.166 0.408 0.0077" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock49" type="box" pos="6.477 0.166 0.0109" size="0.122 0.378 0.0109" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock50" type="box" pos="6.605 0.237 0.0089" size="0.120 0.302 0.0089" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock51" type="box" pos="6.745 -0.375 0.0044" size="0.081 0.448 0.0044" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock52" type="box" pos="6.869 -0.316 0.0058" size="0.104 0.360 0.0058" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock53" type="box" pos="6.959 0.385 0.0051" size="0.185 0.312 0.0051" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock54" type="box" pos="7.098 0.362 0.0139" size="0.140 0.363 0.0139" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock55" type="box" pos="7.204 -0.372 0.0088" size="0.191 0.468 0.0088" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock56" type="box" pos="7.291 0.196 0.0066" size="0.096 0.199 0.0066" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock57" type="box" pos="7.458 0.551 0.0090" size="0.126 0.328 0.0090" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock58" type="box" pos="7.580 0.296 0.0033" size="0.106 0.454 0.0033" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+    <geom name="rock59" type="box" pos="7.680 0.189 0.0122" size="0.156 0.407 0.0122" rgba="0.6 0.5 0.4 1" contype="1" conaffinity="1"/>
+  </worldbody>
+</mujoco>

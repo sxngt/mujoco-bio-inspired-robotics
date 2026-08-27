@@ -1,0 +1,183 @@
+<mujoco model="quadbook_quadruped">
+  <!-- The book's main robot. Built in Chapter 5 and loaded by every chapter from Chapter 6 on.
+       Units: m, kg, s, rad. Forward is +x, left is +y, up is +z.
+       Leg names follow the Chapter 3 notation (LF, RF, LH, RH). -->
+
+  <compiler angle="radian" autolimits="true"/>
+  <option timestep="0.002" integrator="implicitfast" solver="Newton" gravity="0 0 -9.81"/>
+
+  <visual>
+    <global offwidth="1600" offheight="1000"/>
+    <quality shadowsize="4096"/>
+  </visual>
+
+  <default>
+    <!-- Shared by all joints: damping and armature inertia (motor rotor). Both contribute a lot to numerical stability -->
+    <joint damping="0.2" armature="0.01" frictionloss="0.02"/>
+    <geom condim="3" friction="1.0 0.005 0.0001" solref="0.02 1" solimp="0.9 0.95 0.001"/>
+    <motor ctrlrange="-12 12" gear="1"/>
+
+    <default class="torso">
+      <geom type="box" rgba="0.25 0.35 0.6 1"/>
+    </default>
+    <default class="leg">
+      <!-- Leg links get separate contype/conaffinity so they never collide with each other: only the feet touch the floor -->
+      <geom type="capsule" rgba="0.55 0.55 0.6 1" contype="0" conaffinity="0"/>
+      <joint type="hinge"/>
+    </default>
+    <default class="abduction">
+      <joint axis="1 0 0" range="-0.8 0.8"/>
+    </default>
+    <default class="hip">
+      <joint axis="0 1 0" range="-1.2 2.4"/>
+    </default>
+    <default class="knee">
+      <joint axis="0 1 0" range="-2.6 -0.3"/>
+    </default>
+    <default class="foot">
+      <geom type="sphere" size="0.02" rgba="0.15 0.15 0.15 1" contype="1" conaffinity="1" friction="1.0 0.005 0.0001"/>
+    </default>
+  </default>
+
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" rgb1="0.85 0.85 0.85" rgb2="0.65 0.65 0.65" width="300" height="300"/>
+    <material name="grid" texture="grid" texrepeat="10 10" reflectance="0.05"/>
+    <texture type="skybox" builtin="gradient" rgb1="0.95 0.95 1" rgb2="0.6 0.7 0.9" width="32" height="512"/>
+  </asset>
+
+  <worldbody>
+    <light pos="1 1 3" dir="-0.3 -0.3 -1" diffuse="0.9 0.9 0.9" castshadow="true"/>
+    <geom name="floor" type="plane" size="5 5 0.1" material="grid" contype="1" conaffinity="1" euler="0 -0.08727 0"/>
+    <camera name="side" pos="1.6 -1.6 0.7" xyaxes="0.7 0.7 0 -0.25 0.25 0.94"/>
+    <camera name="front" pos="1.8 0 0.5" xyaxes="0 1 0 -0.25 0 0.97"/>
+
+    <body name="torso" pos="0 0 0.32">
+      <freejoint name="root"/>
+      <geom name="torso_geom" class="torso" size="0.2 0.08 0.05" mass="4.0"/>
+      <site name="imu" pos="0 0 0" size="0.01"/>
+      <site name="torso_front" pos="0.2 0 0" size="0.01" rgba="1 0 0 1"/>
+
+      <!-- ===== Left front leg LF ===== -->
+      <body name="LF_hip" pos="0.16 0.09 0">
+        <joint name="LF_abduction" class="abduction"/>
+        <geom class="leg" fromto="0 0 0 0 0.04 0" size="0.03" mass="0.2"/>
+        <body name="LF_thigh" pos="0 0.04 0">
+          <joint name="LF_hip" class="hip"/>
+          <geom class="leg" fromto="0 0 0 0 0 -0.2" size="0.025" mass="0.6"/>
+          <body name="LF_calf" pos="0 0 -0.2">
+            <joint name="LF_knee" class="knee"/>
+            <geom class="leg" fromto="0 0 0 0 0 -0.2" size="0.018" mass="0.3"/>
+            <geom name="LF_foot" class="foot" pos="0 0 -0.2" mass="0.05"/>
+            <site name="LF_foot_site" pos="0 0 -0.2" size="0.022"/>
+          </body>
+        </body>
+      </body>
+
+      <!-- ===== Right front leg RF ===== -->
+      <body name="RF_hip" pos="0.16 -0.09 0">
+        <joint name="RF_abduction" class="abduction"/>
+        <geom class="leg" fromto="0 0 0 0 -0.04 0" size="0.03" mass="0.2"/>
+        <body name="RF_thigh" pos="0 -0.04 0">
+          <joint name="RF_hip" class="hip"/>
+          <geom class="leg" fromto="0 0 0 0 0 -0.2" size="0.025" mass="0.6"/>
+          <body name="RF_calf" pos="0 0 -0.2">
+            <joint name="RF_knee" class="knee"/>
+            <geom class="leg" fromto="0 0 0 0 0 -0.2" size="0.018" mass="0.3"/>
+            <geom name="RF_foot" class="foot" pos="0 0 -0.2" mass="0.05"/>
+            <site name="RF_foot_site" pos="0 0 -0.2" size="0.022"/>
+          </body>
+        </body>
+      </body>
+
+      <!-- ===== Left hind leg LH ===== -->
+      <body name="LH_hip" pos="-0.16 0.09 0">
+        <joint name="LH_abduction" class="abduction"/>
+        <geom class="leg" fromto="0 0 0 0 0.04 0" size="0.03" mass="0.2"/>
+        <body name="LH_thigh" pos="0 0.04 0">
+          <joint name="LH_hip" class="hip"/>
+          <geom class="leg" fromto="0 0 0 0 0 -0.2" size="0.025" mass="0.6"/>
+          <body name="LH_calf" pos="0 0 -0.2">
+            <joint name="LH_knee" class="knee"/>
+            <geom class="leg" fromto="0 0 0 0 0 -0.2" size="0.018" mass="0.3"/>
+            <geom name="LH_foot" class="foot" pos="0 0 -0.2" mass="0.05"/>
+            <site name="LH_foot_site" pos="0 0 -0.2" size="0.022"/>
+          </body>
+        </body>
+      </body>
+
+      <!-- ===== Right hind leg RH ===== -->
+      <body name="RH_hip" pos="-0.16 -0.09 0">
+        <joint name="RH_abduction" class="abduction"/>
+        <geom class="leg" fromto="0 0 0 0 -0.04 0" size="0.03" mass="0.2"/>
+        <body name="RH_thigh" pos="0 -0.04 0">
+          <joint name="RH_hip" class="hip"/>
+          <geom class="leg" fromto="0 0 0 0 0 -0.2" size="0.025" mass="0.6"/>
+          <body name="RH_calf" pos="0 0 -0.2">
+            <joint name="RH_knee" class="knee"/>
+            <geom class="leg" fromto="0 0 0 0 0 -0.2" size="0.018" mass="0.3"/>
+            <geom name="RH_foot" class="foot" pos="0 0 -0.2" mass="0.05"/>
+            <site name="RH_foot_site" pos="0 0 -0.2" size="0.022"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <!-- Actuators: one torque motor per joint. Order is LF, RF, LH, RH × (abduction, hip, knee) -->
+  <actuator>
+    <motor name="LF_abduction" joint="LF_abduction"/>
+    <motor name="LF_hip" joint="LF_hip"/>
+    <motor name="LF_knee" joint="LF_knee"/>
+    <motor name="RF_abduction" joint="RF_abduction"/>
+    <motor name="RF_hip" joint="RF_hip"/>
+    <motor name="RF_knee" joint="RF_knee"/>
+    <motor name="LH_abduction" joint="LH_abduction"/>
+    <motor name="LH_hip" joint="LH_hip"/>
+    <motor name="LH_knee" joint="LH_knee"/>
+    <motor name="RH_abduction" joint="RH_abduction"/>
+    <motor name="RH_hip" joint="RH_hip"/>
+    <motor name="RH_knee" joint="RH_knee"/>
+  </actuator>
+
+  <!-- Sensors: 12 joints × (position, velocity), torso IMU (orientation, angular velocity, acceleration), 4 foot contacts -->
+  <sensor>
+    <jointpos name="LF_abduction_pos" joint="LF_abduction"/>
+    <jointpos name="LF_hip_pos" joint="LF_hip"/>
+    <jointpos name="LF_knee_pos" joint="LF_knee"/>
+    <jointpos name="RF_abduction_pos" joint="RF_abduction"/>
+    <jointpos name="RF_hip_pos" joint="RF_hip"/>
+    <jointpos name="RF_knee_pos" joint="RF_knee"/>
+    <jointpos name="LH_abduction_pos" joint="LH_abduction"/>
+    <jointpos name="LH_hip_pos" joint="LH_hip"/>
+    <jointpos name="LH_knee_pos" joint="LH_knee"/>
+    <jointpos name="RH_abduction_pos" joint="RH_abduction"/>
+    <jointpos name="RH_hip_pos" joint="RH_hip"/>
+    <jointpos name="RH_knee_pos" joint="RH_knee"/>
+    <jointvel name="LF_abduction_vel" joint="LF_abduction"/>
+    <jointvel name="LF_hip_vel" joint="LF_hip"/>
+    <jointvel name="LF_knee_vel" joint="LF_knee"/>
+    <jointvel name="RF_abduction_vel" joint="RF_abduction"/>
+    <jointvel name="RF_hip_vel" joint="RF_hip"/>
+    <jointvel name="RF_knee_vel" joint="RF_knee"/>
+    <jointvel name="LH_abduction_vel" joint="LH_abduction"/>
+    <jointvel name="LH_hip_vel" joint="LH_hip"/>
+    <jointvel name="LH_knee_vel" joint="LH_knee"/>
+    <jointvel name="RH_abduction_vel" joint="RH_abduction"/>
+    <jointvel name="RH_hip_vel" joint="RH_hip"/>
+    <jointvel name="RH_knee_vel" joint="RH_knee"/>
+    <framequat name="torso_quat" objtype="site" objname="imu"/>
+    <gyro name="torso_gyro" site="imu"/>
+    <accelerometer name="torso_acc" site="imu"/>
+    <touch name="LF_touch" site="LF_foot_site"/>
+    <touch name="RF_touch" site="RF_foot_site"/>
+    <touch name="LH_touch" site="LH_foot_site"/>
+    <touch name="RH_touch" site="RH_foot_site"/>
+  </sensor>
+
+  <!-- Keyframe: standing pose. qpos = torso position 3 + orientation quaternion 4 + joints 12 -->
+  <keyframe>
+    <key name="stand"
+         qpos="0 0 0.31  1 0 0 0
+               0 0.8 -1.5   0 0.8 -1.5   0 0.8 -1.5   0 0.8 -1.5"/>
+  </keyframe>
+</mujoco>
